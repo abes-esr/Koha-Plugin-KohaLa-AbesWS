@@ -25,7 +25,7 @@ our $metadata = {
     minimum_version => '20.05.00.000',
     maximum_version => undef,
     copyright       => '2021',
-    version         => '1.0.4',
+    version         => '1.0.5',
 };
 
 
@@ -349,7 +349,7 @@ sub get_algo {
 
 sub intranet_js {
     my $self = shift;
-    my $js_file = $self->get_plugin_http_path() . "/abesws.js";
+    my $js_file = "/api/v1/contrib/abesws/static/abesws.js";
     my $c = to_json($self->config());
     return <<EOS;
 <script>
@@ -377,6 +377,21 @@ sub upgrade {
 
 sub uninstall() {
     my ($self, $args) = @_;
+}
+
+sub static_routes {
+    my ( $self, $args ) = @_;
+
+    my $spec_str = $self->mbf_read('api/staticapi.json');
+    my $spec     = decode_json($spec_str);
+
+    return $spec;
+}
+
+sub api_namespace {
+    my ( $self ) = @_;
+    
+    return 'abesws';
 }
 
 1;
