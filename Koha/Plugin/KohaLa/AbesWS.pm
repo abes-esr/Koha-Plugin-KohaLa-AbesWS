@@ -349,17 +349,16 @@ sub get_algo {
 
 sub intranet_js {
     my $self = shift;
-    my $js_file = "/api/v1/contrib/abesws/static/abesws.js";
     my $c = to_json($self->config());
-    return <<EOS;
-<script>
-\$(document).ready(() => {
-  \$.getScript("$js_file")
-    .done(() => \$.abesWs($c));
-});
-</script>
-EOS
 
+    return q|
+        <script src="/api/v1/contrib/abesws/static/js/abesws.js"></script>
+        <script>
+        $(document).ready(() => {
+            $.abesWs($c);
+        });
+        </script>
+    |;
 }
 
 sub install() {
