@@ -1,4 +1,4 @@
-# Plugin KohaLa Abes WS
+# Plugin KohaLa Abes WS - Version 2021
 
 **Abes WS** est un plugin Koha qui permet d'exploiter depuis Koha des services
 web de l'ABES. L'intégration à Koha de services web de l'ABES vise deux
